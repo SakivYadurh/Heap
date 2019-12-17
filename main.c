@@ -21,6 +21,7 @@ int main(){
     FILE *fp;
     p1={'p','a','s','s','c','r','y','p','t'};
     p2={'d','e','w','o','r','d'};
+    filename:
     printf("enter filename:");
     gets(f1);
     if(!strcmp(f1,"file1"))
@@ -31,8 +32,10 @@ int main(){
        fp=fopen(f1,"r");
     else if(!strcmp(f1,"file4"))
        fp=fopen(f1,"r");
-    else 
+    else{ 
        printf("File doesn't exist.\nEnter a valid filename.");
+       goto filename;
+    }
     c=count(fp);
     if(c=0)
       printf("File is empty.\nEnter some data.");
