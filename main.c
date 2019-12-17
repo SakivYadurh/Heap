@@ -101,6 +101,7 @@ int main(){
     if(c=0){
       printf("File is empty.");
       choice(fp);
+    }
     else{
         s=read(fp);
         if(flag==1){
@@ -112,6 +113,5 @@ int main(){
             puts(s);
             choice(fp);
         }
-    }    
-    }
+    }   
 }
