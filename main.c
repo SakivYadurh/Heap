@@ -37,9 +37,10 @@ int main(){
        goto filename;
     }
     c=count(fp);
-    if(c=0)
+    if(c=0){
       printf("File is empty.\nEnter some data.");
       fclose(fp);
       fp=fopen(f1,"w");
       write(fp);
+    }
 }
