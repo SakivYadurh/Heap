@@ -11,13 +11,39 @@ int count(FILE *fp){
 }
 void write(FILE *fp){
      char c,s1[100];
-     int i=0;
-     while((c=getchar()!='\n'){
-           putc(c,fp);
+     int i=0,j=0,k=1;
+     while((c=getchar())!=EOF){
            s1[i++]=c;
+           s1[i++]='|';
      }
      s1[i]='\0';
-     encrypt(s1);
+     s1=encrypt(s1);
+     while ((c=s[j])!='\0'){
+    n=c;
+    while (n != 0) {
+        r = n % 2;
+        n /= 2;
+        if(k%2==0){
+          if(r==1)
+             a='/';
+          else
+             a=',';
+        }
+        else{
+            if(r==1)
+             a='-';
+          else
+             a='.';
+        }
+        k++;
+        putc(a,fp);
+        if(n==0){
+          putc('|',fp);
+          k=1;
+        }
+    }
+    j+=2;
+ }
 }
 char read(FILE *fp){
      char c,s[100];
@@ -43,6 +69,7 @@ int password(void){
           printf("Password invalid.\nPlease re-enter the password.");
           goto check;
       }
+      return flag;
 }
 void choice(FILE *fp){
      choice:
@@ -61,9 +88,6 @@ void choice(FILE *fp){
           printf("Invalid key");
           goto choice;
          } 
-}
-char encrypt(char s1){
-     int a 
 }
 char decrypt(char s){
     
@@ -109,7 +133,7 @@ int main(){
             choice(fp);
         }
         else if(flag==2){
-            s=decrypt(s);
+            s=decrypt(fp);
             puts(s);
             choice(fp);
         }
