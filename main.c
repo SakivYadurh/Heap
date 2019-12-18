@@ -17,7 +17,6 @@ void write(FILE *fp){
            s1[i++]='|';
      }
      s1[i]='\0';
-     s1=encrypt(s1);
      while ((c=s[j])!='\0'){
     n=c;
     while (n != 0) {
