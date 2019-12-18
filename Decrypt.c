@@ -26,6 +26,7 @@ int main()
          k++;
          }
       else{
+      	 a[i][k]=5;
          i++;
          k=0;
       }
@@ -34,13 +35,16 @@ int main()
   d1=i-1;
   d2=i-1;
   for(i=0;d1>=0;i++){
-  c=k-1,b=1;
-  while(c>=0){
-    b*=10*a[i][c];
-    c--;
-  }
-  bi[i]=b;
-  d1--;
+  	k = 0;
+  	while(a[i][k]==1 || a[i][k]==0)
+      	k++;
+  	c=k-1,b=0;
+  	while(c>=0){
+    	b=b*10+a[i][c];
+    	c--;
+  	}
+  	bi[i]=b;
+  	d1--;
   }
   j=0;
   while(d2>=0){
