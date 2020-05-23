@@ -2,7 +2,7 @@
 #include<stdlib.h>
 
 typedef struct node {
-    char[40] title;
+    char title[40];
     struct node *next;
 } NODE;
 
