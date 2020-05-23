@@ -12,7 +12,8 @@ NODE *p;
 void push() {
     p = (NODE *)malloc(sizeof(NODE));
     printf("Enter the String : ");
-    scanf("%[^\n]%*c", &p -> title);
+    scanf("%s", &p -> title);
+    /* For some reason, %[^\n]%*c wont work */
     p -> next = top;
     top = p;
 }
