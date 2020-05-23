@@ -53,8 +53,12 @@ int main() {
     }
     else if(choice==2){
         choice=0;
-        printf("Your History\n");
-        dispaly();
+        if(top==NULL)
+            printf("No History\n");
+        else{
+            printf("Your History\n");
+            dispaly();
+        }
         printf("1. Clear history\n2. Search\nEnter your choice:");
         scanf("%d",&choice);
         if(choice==1){
