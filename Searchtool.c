@@ -3,7 +3,7 @@
 
 // Structure of nodes storing history of visited titles in a stack
 typedef struct hstr_node {
-    char title[50];
+    char* title;
     struct hstr_node *next;
 } Hstr_List;
 
@@ -44,7 +44,7 @@ void display() {
 // SEARCH OPERATIONS
 void searching(){
     char search[50];
-    scanf("%s",&search);
+    scanf("%s",search);
     push(search);
 }
 
