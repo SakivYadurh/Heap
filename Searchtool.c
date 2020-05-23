@@ -57,11 +57,10 @@ int main() {
             printf("No History\n");
         else{
             printf("Your History\n");
-            dispaly();
-        }
-        printf("1. Clear history\n2. Search\nEnter your choice:");
-        scanf("%d",&choice);
-        if(choice==1){
+            display();
+            printf("1. Clear history\n2. Search\nEnter your choice:");
+            scanf("%d",&choice);
+            if(choice==1){
             choice=0;
             printf("1. CLear recent history\n2.Clear entire history\nEnter your choice:");
             scanf("%d",&choice);
