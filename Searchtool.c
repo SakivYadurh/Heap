@@ -1,16 +1,16 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-typedef struct node {
+typedef struct hstr_node {
     char title[40];
-    struct node *next;
-} NODE;
+    struct hstr_node *next;
+} Hstr_List;
 
-NODE *top = NULL;
-NODE *p;
+Hstr_List *top = NULL;
+Hstr_List *p;
 
 void push() {
-    p = (NODE *)malloc(sizeof(NODE));
+    p = (Hstr_List *)malloc(sizeof(Hstr_List));
     printf("Enter the String : ");
     scanf("%s", &p -> title);
     /* For some reason, %[^\n]%*c wont work */
