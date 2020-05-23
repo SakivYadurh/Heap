@@ -44,6 +44,7 @@ void display() {
 // SEARCH OPERATIONS
 void searching(){
     char search[50];
+    printf("Search for:");
     scanf("%s",search);
     push(search);
 }
