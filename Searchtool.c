@@ -15,7 +15,7 @@ Hstr_List *p;
 void push(char* s) {
     p = (Hstr_List *)malloc(sizeof(Hstr_List));
     p -> title=s;
-    /* For some reason, %[^\n]%*c wont work */
+    /* ERROR - LINE 17 : assignment to expression with array type. idk what and why atleast for now */
     p -> next = top;
     top = p;
 }
@@ -68,9 +68,9 @@ void history() {
             choice=0;
             while(1){
                 if(t==1){
-                    printf("Entire History Cleared...\nPress any key to go back to main menu... \n")
+                    printf("Entire History Cleared...\nPress any key to go back to main menu... \n");
                     t = getchar();
-                    break();
+                    break;
                 }
                 t=pop();
             }
@@ -98,7 +98,7 @@ int main() {
             history();
         }
         else{
-            printf("Exiting Application...\n")
+            printf("Exiting Application...\n");
         }
     } while(choice > 0 && choice <3);
     return 0;
