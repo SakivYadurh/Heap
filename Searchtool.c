@@ -175,8 +175,9 @@ void searching(){
         if(ch==search[i]&&i<l)
             i++;
         else if(i==l){
-            while((ch1=getc(fp1))!='\n')
-                title[j++]=ch1;
+            if(ch!='\n')
+                while((ch1=getc(fp1))!='\n')
+                    title[j++]=ch1;
             title[j]='\0';
             i=0;
             j=0;
