@@ -74,6 +74,7 @@ void delete(){
         f = f -> next;
         free(q);
     }
+    free(q);
     f = r = NULL;
 }
 void q_display(){
