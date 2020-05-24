@@ -70,7 +70,8 @@ void insert(int n, char s[]){
 }
 void q_display(){
     int i = 1, choice;
-    char filename[50], ch;
+    char filename[50], temp[50], ch;
+    char rel_path[100]="D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\";
     FILE *fp;
     if(f==NULL || r==NULL){
         printf("Your search did not match any documents\n Suggestions:\n");
@@ -88,17 +89,21 @@ void q_display(){
         if(choice>=i)
             printf("WRONG CHOICE SELECTED\n");
         else if(choice==1)
-            strcpy(filename, q -> title);
+            strcpy(filename, t -> title);
         else{
             while(choice!=1){
-                q = q -> next;
+                t = t -> next;
                 choice--;
             }
-            strcpy(filename, q -> title);
+            strcpy(filename, t -> title);
         }
-        fp = fopen(filename,"r");
+        strcpy(temp, filename);
+        fp = fopen(strcat(rel_path, strcat(temp, ".txt")),"r");
         while((ch=getc(fp))!=EOF)
             printf("%c",ch);
+        printf("\nTo Go back to main menu, ");
+        system("cls");
+        strcpy(rel_path, "D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\");
     }
 }
 
@@ -175,7 +180,7 @@ void searching(){
         if(ch==search[i]&&i<l)
             i++;
         else if(i==l){
-            if(ch!='\n'){
+            if(ch!='\n') {
                 while((ch1=getc(fp1))!='\n')
                     title[j++]=ch1;
             }
