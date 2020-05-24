@@ -70,7 +70,7 @@ void insert(int n, char s[]){
 }
 void delete(){
     q = f;
-    f = f ->next;
+    f = f -> next;
     free(q);
     if(f==NULL)
         r = NULL;
@@ -183,6 +183,8 @@ void searching(){
     FILE *fp1,*fp2;
     fp1=fopen("D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\titles.txt" ,"r");
     while((ch=getc(fp1))!=EOF){
+        if(ch!='\n')
+            title[j++]=ch;
         if(ch==search[i]&&i<l)
             i++;
         else if(i==l){
@@ -200,7 +202,6 @@ void searching(){
         }
         else
             i=0;
-        title[j++]=ch;
         if(ch=='\n'){
             i=j=0;
         }
