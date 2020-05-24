@@ -159,8 +159,8 @@ void count(FILE *fp, char s[]){
 // SEARCH OPERATIONS
 void searching(){
     /************ !!! DO NOT FORGET TO CHANGE THE DIRECTORIES OR ADDRESSES BELOW ACCORDINGLY ************/
-    char rel_path[100]="Disk:\\....\\Course Project\\Archives\\"; 
-    char search[50],title[50],ch, ch1;
+    char rel_path[100]="D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\"; 
+    char search[50],title[50], temp[50],ch, ch1;
     int i=0,l,f=1,j=0;
     printf("Searching for : ");
     scanf("%s",search);
@@ -169,7 +169,7 @@ void searching(){
     printf("You searched for %s\n\n\n",search);
     l=strlen(search);
     FILE *fp1,*fp2;
-    fp1=fopen("Disk:\\....\\Course Project\\Archives\\titles.txt" ,"r");
+    fp1=fopen("D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\titles.txt" ,"r");
     while((ch=getc(fp1))!=EOF){
         title[j++]=ch;
         if(ch==search[i]&&i<l)
@@ -178,13 +178,16 @@ void searching(){
             while((ch1=getc(fp1))!='\n')
                 title[j++]=ch1;
             title[j]='\0';
-            fp2=fopen(strcat(rel_path, strcat(title, ".txt")),"r");
+            i=0;
+            j=0;
+            strcpy(temp, title);
+            fp2=fopen(strcat(rel_path, strcat(temp, ".txt")),"r");
             count(fp2,title);
-            strcpy(rel_path, "Disk:\\....\\Course Project\\Archives\\");
+            strcpy(rel_path, "D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\");
         }
         else
             i=0;
-        if(ch=='\n' || ch1=='\n'){
+        if(ch=='\n'){
             i=j=0;
         }
     }
