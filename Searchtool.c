@@ -54,7 +54,7 @@ void display() {
 }
 /****************** STACK OPERATIONS END ******************/
 
-/****************** QUEUE OPERATIONS START ******************/
+/******************** QUEUE OPERATIONS ******************/
 
 void insert(int n, char s[]){
     q=(Access_Queue *)malloc(sizeof(Access_Queue));
@@ -79,7 +79,7 @@ void q_display(){
     else{
         t = q = f;
         while(q! = NULL){
-            printf("%d. %s\n\Total number of words in this document - %d\n\n",i++, q -> title, q -> words);
+            printf("%d. %s\n\tTotal number of words in this document - %d\n\n",i++, q -> title, q -> words);
             q = q -> next;
         }
         printf("Enter your choice of document:");
