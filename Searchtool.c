@@ -93,7 +93,7 @@ void q_display(){
             printf("%d. %s\n\tTotal number of words in this document - %d\n\n",i++, q -> title, q -> words);
             q = q -> next;
         }
-        printf("\nEnter your choice of document:");
+        printf("\nEnter the number corresponding to the document to access it: ");
         scanf("%d",&choice);
         system("cls");
         if(choice>=i)
@@ -167,7 +167,7 @@ void clear_bst(NODE *ptr) {
         clear_bst(ptr -> right);
     free(ptr);
 }
-/****************** BST OPERATIONS END******************/
+/****************** BST OPERATIONS END ******************/
 
 
 // WORD COUNT FINDER
@@ -188,11 +188,11 @@ void searching(){
     char rel_path[100]="D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\"; 
     char search[50],title[50], temp[50],ch, ch1;
     int i=0,l,j=0;
-    printf("Searching for : ");
+    printf("Enter any keyword related to the document you are searching for.\nKeyword: ");
     scanf("%s",search);
     push(search);
     system("cls");
-    printf("You searched for %s\n\n\n",search);
+    printf("Search Keyword: \"%s\"\n\n\n",search);
     l=strlen(search);
     FILE *fp1,*fp2;
     fp1=fopen("D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\titles.txt" ,"r");
@@ -242,7 +242,7 @@ void history() {
         system("pause");
     }
     else{
-        printf("Your History\n");
+        printf("YOUR HISTORY\n\n");
         display();
         printf("1. Clear recent history\n2. Clear entire history\n3. Go back to main menu\n\nEnter your choice: ");
         scanf("%d",&choice);
