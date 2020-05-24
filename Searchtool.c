@@ -116,7 +116,6 @@ void bst_for_sorting(int words, char s[]) {
     strcpy(new -> title, s);
     if(root == NULL) {
         root = new;
-        current = root;
         flag = 0;
     }
     while(flag) {
@@ -185,7 +184,7 @@ void searching(){
         }
         else
             i=0;
-        if(ch=='\n'){
+        if(ch1=='\n'){
             j=0;
         }
     }
