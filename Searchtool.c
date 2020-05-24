@@ -116,7 +116,9 @@ void bst_for_sorting(int words, char s[]) {
     strcpy(new -> title, s);
     if(root == NULL) {
         root = new;
-        }
+        current = root;
+        flag = 0;
+    }
     while(flag) {
         if(new -> data > current -> data) {
             if(current -> right == NULL) {
