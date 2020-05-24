@@ -69,13 +69,11 @@ void insert(int n, char s[]){
     }
 }
 void delete(){
-    while(f!=NULL){
-        q = f;
-        f = f -> next;
-        free(q);
-    }
+    q = f;
+    f = f -> next;
     free(q);
-    f = r = NULL;
+    if(f==NULL)
+        r = NULL;
 }
 void q_display(){
     int i = 1, choice;
@@ -159,6 +157,14 @@ void inorder(NODE *ptr) {
         inorder(ptr -> right);
 }
 
+void clear_bst(NODE *ptr) {
+    if(ptr -> left != NULL)
+        clear_bst(ptr -> left);
+    if(ptr -> right != NULL)
+        clear_bst(ptr -> right);
+    free(ptr);
+}
+
 void count(FILE *fp, char s[]){
     int words=1;
     char ch;
@@ -210,7 +216,9 @@ void searching(){
     }
     inorder(root);
     q_display();
-    delete();
+    while(f!=NULL || r!=NULL)
+        delete();
+    clear_bst();
     system("cls");
 }
 
