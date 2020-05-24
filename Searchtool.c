@@ -64,8 +64,8 @@ void insert(int n, char s[]){
     if(r==NULL || f==NULL)
         f = r = q;
     else{
-        r -> next = p;
-        r = p;
+        r -> next = q;
+        r = q;
     }
 }
 void q_display(){
