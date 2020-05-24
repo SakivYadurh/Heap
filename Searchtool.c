@@ -108,8 +108,6 @@ void q_display(){
         fp = fopen(strcat(rel_path, strcat(temp, ".txt")),"r");
         while((ch=getc(fp))!=EOF)
             printf("%c",ch);
-        printf("\nTo Go back to main menu, ");
-        system("pause");
         strcpy(rel_path, "D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\");
     }
 }
@@ -214,11 +212,16 @@ void searching(){
             i=j=0;
         }
     }
-    inorder(root);
+    if(root!=NULL)
+        inorder(root);
     q_display();
     while(f!=NULL || r!=NULL)
         delete();
-    clear_bst();
+    if(root!=NULL)
+        clear_bst(root);
+    root = NULL;
+    printf("\nTo Go back to main menu, ");
+        system("pause");
     system("cls");
 }
 
