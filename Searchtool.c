@@ -183,7 +183,6 @@ void searching(){
     FILE *fp1,*fp2;
     fp1=fopen("D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\titles.txt" ,"r");
     while((ch=getc(fp1))!=EOF){
-        title[j++]=ch;
         if(ch==search[i]&&i<l)
             i++;
         else if(i==l){
@@ -199,6 +198,7 @@ void searching(){
             count(fp2,title);
             strcpy(rel_path, "D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\");
         }
+        title[j++]=ch;
         else
             i=0;
         if(ch=='\n'){
