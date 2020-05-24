@@ -69,11 +69,12 @@ void insert(int n, char s[]){
     }
 }
 void delete(){
-    q = f;
-    f = f -> next;
-    free(q);
-    if(f==NULL)
-        r = NULL;
+    while(f!=NULL){
+        q = f;
+        f = f -> next;
+        free(q);
+    }
+    f = r = NULL;
 }
 void q_display(){
     int i = 1, choice;
@@ -208,8 +209,7 @@ void searching(){
     }
     inorder(root);
     q_display();
-    while(f!=NULL || r!=NULL)
-        delete();
+    delete();
     system("cls");
 }
 
