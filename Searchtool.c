@@ -4,9 +4,17 @@
 
 typedef struct node {
     int data;
+    char title[50];
     struct node *left, *right;
 } NODE;
 NODE *root = NULL;
+
+typedef struct q_node{
+    int words;
+    char title[50];
+    struct q_node *next;
+} Access_Queue;
+Access_Queue *r=NULL, *f=NULL, *q, *t;
 
 // Structure of nodes storing history of visited titles in a stack
 typedef struct hstr_node {
@@ -46,101 +54,138 @@ void display() {
 }
 /****************** STACK OPERATIONS END ******************/
 
-NODE *bst_for_sorting(int words) {
+/****************** QUEUE OPERATIONS START ******************/
+
+void insert(int n, char s[]){
+    q=(Access_Queue *)malloc(sizeof(Access_Queue));
+    strcpy(q -> title, s);
+    q -> words = n;
+    q -> next = NULL;
+    if(r==NULL || f==NULL)
+        f = r = q;
+    else{
+        r -> next = p;
+        r = p;
+    }
+}
+void q_display(){
+    int i = 1, choice;
+    char filename[50], ch;
+    FILE *fp;
+    if(f==NULL || r==NULL){
+        printf("Your search did not match any documents\n Suggestions:\n");
+        printf("1. Make sure all the words are spelled correctly.\n2. Try more general keywords.\n");
+    }
+    else{
+        t = q = f;
+        while(q! = NULL){
+            printf("%d. %s\n\Total number of words in this document - %d\n\n",i++, q -> title, q -> words);
+            q = q -> next;
+        }
+        printf("Enter your choice of document:");
+        scanf("%d",&choice);
+        system("cls");
+        if(choice>=i)
+            printf("WRONG CHOICE SELECTED\n");
+        else if(choice==1)
+            strcpy(filename, q -> title);
+        else{
+            while(choice!=1){
+                q = q -> next;
+                choice--;
+            }
+            strcpy(filename, q -> title);
+        }
+        fp = fopen(filename,"r");
+        while((ch=getc(fp))!=EOF)
+            printf("%c",ch);
+    }
+}
+
+/****************** QUEUE OPERATIONS END ******************/
+
+void bst_for_sorting(int words, char s[]) {
     int flag;
     NODE *new, *current;
-        flag = 1;
-        current = root;
-        new = (NODE*)malloc(sizeof(NODE));
-        new -> left = NULL;
-        new -> right = NULL;
-        new -> data = words;
-        if(root == NULL) {
-            root = new;
-            //continue;
+    flag = 1;
+    current = root;
+    new = (NODE*)malloc(sizeof(NODE));
+    new -> left = NULL;
+    new -> right = NULL;
+    new -> data = words;    
+    strcpy(new -> title, s);
+    if(root == NULL) {
+        root = new;
         }
-        while(flag) {
-            if(new -> data > current -> data) {
-                if(current -> right == NULL) {
-                    current -> right = new;
-                    flag = 0;
-                }
-                else
-                    current = current -> right;
+    while(flag) {
+        if(new -> data > current -> data) {
+            if(current -> right == NULL) {
+                current -> right = new;
+                flag = 0;
             }
-            else {
-                if(current -> left == NULL) {
-                    current -> left = new;
-                    flag = 0;
-                }
-                else
-                    current = current -> left;
+            else
+                current = current -> right;
+        }
+        else {
+            if(current -> left == NULL) {
+                current -> left = new;
+                flag = 0;
+            }
+            else
+                current = current -> left;
             }
         }
 }
 void inorder(NODE *ptr) {
     if(ptr -> left != NULL)
         inorder(ptr -> left);
-    printf("%d ", ptr -> data);     //Should change this to push the data into QUEUE
+    insert(ptr -> data, ptr -> title);
     if(ptr -> right != NULL)
         inorder(ptr -> right);
 }
 
-void count(FILE *fp){
+void count(FILE *fp, char s[]){
     int words=1;
     char ch;
     while((ch=getc(fp))!=EOF){
         if(ch==' ')
             words++;
     }
-    bst_for_sorting(words);
+    bst_for_sorting(words, s);
 }
 
 
 // SEARCH OPERATIONS
 void searching(){
-    char search[50],ch;
-    int i=0,l,f=1;
-    printf("Enter Statement: ");
+    char search[50],title[50],ch1;
+    int i=0,l,f=1,j=0;
+    printf("Searching for : ");
     scanf("%s",search);
     push(search);
     system("cls");
+    printf("You searched for %s\n\n\n",search);
     l=strlen(search);
     FILE *fp1,*fp2;
     fp1=fopen("titles","r");
     while((ch=getc(fp1))!=EOF){
+        title[j++]=ch;
         if(ch==search[i]&&i<l)
             i++;
         else if(i==l){
-            if(f==1)
-                fp2=fopen("f1","r");
-            if(f==2)
-                fp2=fopen("f2","r");
-            if(f==3)
-                fp2=fopen("f3","r");
-            if(f==4)
-                fp2=fopen("f4","r"); 
-            if(f==5)
-                fp2=fopen("f5","r");
-            if(f==6)
-                fp2=fopen("f6","r");            
-            if(f==7)
-                fp2=fopen("f7","r");
-            if(f==8)
-                fp2=fopen("f8","r");
-            if(f==9)
-                fp2=fopen("f9","r");
-            if(f==10)
-                fp2=fopen("f10","r");
-            count(fp2);
+            while((ch1=getc(fp1))!='\n')
+                title[j++]=ch1;
+            title[j]='\0';
+            fp2=fopen(title,"r");
+            count(fp2,title);
         }
         else
             i=0;
-        if(ch=='\n')
-            f++;
+        if(ch=='\n'){
+            j=0;
+        }
     }
     inorder(root);
-    //To be continued
+    q_display();
 }
 
 
@@ -188,7 +233,6 @@ int main() {
         system("cls"); // Console screen is CLEARED. i.e., Main screen instructions disappear and Search/History instructions appear
         if(choice==1){
             searching();
-            /*Still to be continued*/
         }
         else if(choice==2) {
             history();
