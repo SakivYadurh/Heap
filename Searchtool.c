@@ -184,7 +184,7 @@ void searching(){
         }
         else
             i=0;
-        if(ch=='\n'){
+        if(ch=='\n' || ch1=='\n'){
             j=0;
         }
     }
