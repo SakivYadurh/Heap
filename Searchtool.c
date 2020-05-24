@@ -173,7 +173,7 @@ void searching(){
     /************ !!! DO NOT FORGET TO CHANGE THE DIRECTORIES OR ADDRESSES BELOW ACCORDINGLY ************/
     char rel_path[100]="D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\"; 
     char search[50],title[50], temp[50],ch, ch1;
-    int i=0,l,f=1,j=0;
+    int i=0,l,j=0;
     printf("Searching for : ");
     scanf("%s",search);
     push(search);
