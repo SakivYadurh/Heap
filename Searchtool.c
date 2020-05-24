@@ -64,8 +64,8 @@ void insert(int n, char s[]){
     if(r==NULL || f==NULL)
         f = r = q;
     else{
-        r -> next = q;
-        r = q;
+        r -> next = p;
+        r = p;
     }
 }
 void q_display(){
@@ -78,7 +78,7 @@ void q_display(){
     }
     else{
         t = q = f;
-        while(q! = NULL){
+        while(q != NULL){
             printf("%d. %s\n\tTotal number of words in this document - %d\n\n",i++, q -> title, q -> words);
             q = q -> next;
         }
@@ -157,7 +157,9 @@ void count(FILE *fp, char s[]){
 
 // SEARCH OPERATIONS
 void searching(){
-    char search[50],title[50],ch1;
+    /************ !!! DO NOT FORGET TO CHANGE THE DIRECTORIES OR ADDRESSES BELOW ACCORDINGLY ************/
+    char rel_path[100]="D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\"; 
+    char search[50],title[50],ch, ch1;
     int i=0,l,f=1,j=0;
     printf("Searching for : ");
     scanf("%s",search);
@@ -166,7 +168,7 @@ void searching(){
     printf("You searched for %s\n\n\n",search);
     l=strlen(search);
     FILE *fp1,*fp2;
-    fp1=fopen("titles","r");
+    fp1=fopen("D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\titles.txt" ,"r");
     while((ch=getc(fp1))!=EOF){
         title[j++]=ch;
         if(ch==search[i]&&i<l)
@@ -175,8 +177,9 @@ void searching(){
             while((ch1=getc(fp1))!='\n')
                 title[j++]=ch1;
             title[j]='\0';
-            fp2=fopen(title,"r");
+            fp2=fopen(strcat(rel_path, strcat(title, ".txt")),"r");
             count(fp2,title);
+            strcpy(rel_path, "D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\");
         }
         else
             i=0;
