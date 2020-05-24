@@ -46,7 +46,7 @@ void display() {
 }
 /****************** STACK OPERATIONS END ******************/
 
-NODE *bst_for_sorting(int words) {
+void bst_for_sorting(int words) {
     int flag;
     NODE *new, *current;
         flag = 1;
@@ -57,7 +57,6 @@ NODE *bst_for_sorting(int words) {
         new -> data = words;
         if(root == NULL) {
             root = new;
-            continue;
         }
         while(flag) {
             if(new -> data > current -> data) {
