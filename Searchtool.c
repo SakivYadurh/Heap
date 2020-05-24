@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 
+// Structure of nodes which form a BST, whose inorder traversal gives a priority order
 typedef struct node {
     int data;
     char title[50];
@@ -9,6 +10,7 @@ typedef struct node {
 } NODE;
 NODE *root = NULL;
 
+// Structure of nodes which form a queue of search results
 typedef struct q_node{
     int words;
     char title[50];
@@ -16,7 +18,7 @@ typedef struct q_node{
 } Access_Queue;
 Access_Queue *r=NULL, *f=NULL, *q, *t;
 
-// Structure of nodes storing history of visited titles in a stack
+// Structure of nodes which store history of visited titles in a stack
 typedef struct hstr_node {
     char title[50];
     struct hstr_node *next;
@@ -54,8 +56,8 @@ void display() {
 }
 /****************** STACK OPERATIONS END ******************/
 
-/******************** QUEUE OPERATIONS ******************/
 
+/******************** QUEUE OPERATIONS ******************/
 void insert(int n, char s[]){
     q=(Access_Queue *)malloc(sizeof(Access_Queue));
     strcpy(q -> title, s);
@@ -78,6 +80,7 @@ void delete(){
 void q_display(){
     int i = 1, choice;
     char filename[50], temp[50], ch;
+    /************ !!! DO NOT FORGET TO CHANGE THE DIRECTORIES OR ADDRESSES BELOW ACCORDINGLY ************/
     char rel_path[100]="D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\";
     FILE *fp;
     if(f==NULL || r==NULL){
@@ -90,7 +93,7 @@ void q_display(){
             printf("%d. %s\n\tTotal number of words in this document - %d\n\n",i++, q -> title, q -> words);
             q = q -> next;
         }
-        printf("Enter your choice of document:");
+        printf("\nEnter your choice of document:");
         scanf("%d",&choice);
         system("cls");
         if(choice>=i)
@@ -111,9 +114,10 @@ void q_display(){
         strcpy(rel_path, "D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\");
     }
 }
-
 /****************** QUEUE OPERATIONS END ******************/
 
+
+/****************** BST OPERATIONS ******************/
 void bst_for_sorting(int words, char s[]) {
     int flag;
     NODE *new, *current;
@@ -147,6 +151,7 @@ void bst_for_sorting(int words, char s[]) {
             }
         }
 }
+
 void inorder(NODE *ptr) {
     if(ptr -> left != NULL)
         inorder(ptr -> left);
@@ -162,7 +167,10 @@ void clear_bst(NODE *ptr) {
         clear_bst(ptr -> right);
     free(ptr);
 }
+/****************** BST OPERATIONS ******************/
 
+
+// WORD COUNT FINDER
 void count(FILE *fp, char s[]){
     int words=1;
     char ch;
@@ -220,7 +228,7 @@ void searching(){
     if(root!=NULL)
         clear_bst(root);
     root = NULL;
-    printf("\nTo Go back to main menu, ");
+    printf("\n\nTo Go back to main menu, ");
         system("pause");
     system("cls");
 }
@@ -261,11 +269,13 @@ void history() {
     system("cls"); // Console screen is CLEARED. i.e., History instructions disappear and Main Menu instructions appear
 }
 
+
+// MAIN FUNCTION
 int main() {
     int choice;
     //clrscr();
     do {
-        printf("MAIN MENU\n\n1. Search\n2. History\n\nAny other number to exit\n\nEnter your choice:");
+        printf("MAIN MENU\n\n1. Search\n2. History\n\nAny other number to exit\n\nEnter your choice: ");
         scanf("%d",&choice);
         system("cls"); // Console screen is CLEARED. i.e., Main screen instructions disappear and Search/History instructions appear
         if(choice==1){
