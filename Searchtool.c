@@ -175,7 +175,7 @@ void count(FILE *fp, char s[]){
     int words=1;
     char ch;
     while((ch=getc(fp))!=EOF){
-        if(ch==' ')
+        if(ch==' ' || ch=='\n')
             words++;
     }
     bst_for_sorting(words, s);
