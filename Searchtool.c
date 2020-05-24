@@ -185,7 +185,7 @@ void searching(){
         else
             i=0;
         if(ch=='\n' || ch1=='\n'){
-            j=0;
+            i=j=0;
         }
     }
     inorder(root);
