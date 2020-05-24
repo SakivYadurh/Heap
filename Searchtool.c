@@ -109,7 +109,7 @@ void q_display(){
         while((ch=getc(fp))!=EOF)
             printf("%c",ch);
         printf("\nTo Go back to main menu, ");
-        system("cls");
+        system("pause");
         strcpy(rel_path, "D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\");
     }
 }
@@ -210,6 +210,7 @@ void searching(){
     q_display();
     while(f!=NULL || r!=NULL)
         delete();
+    system("cls");
 }
 
 
