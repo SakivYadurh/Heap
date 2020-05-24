@@ -167,7 +167,7 @@ void clear_bst(NODE *ptr) {
         clear_bst(ptr -> right);
     free(ptr);
 }
-/****************** BST OPERATIONS ******************/
+/****************** BST OPERATIONS END******************/
 
 
 // WORD COUNT FINDER
