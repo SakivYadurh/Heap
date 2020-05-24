@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
 typedef struct node {
     int data;
@@ -9,7 +10,7 @@ NODE *root = NULL;
 
 // Structure of nodes storing history of visited titles in a stack
 typedef struct hstr_node {
-    char* title;
+    char title[50];
     struct hstr_node *next;
 } Hstr_List;
 
@@ -18,9 +19,9 @@ Hstr_List *p;
 
 
 /******************** STACK OPERATIONS ********************/
-void push(char* s) {
+void push(char s[]) {
     p = (Hstr_List *)malloc(sizeof(Hstr_List));
-    p -> title=s;
+    strcpy(p -> title, s);
     /* ERROR - LINE 17 : assignment to expression with array type. idk what and why atleast for now */
     p -> next = top;
     top = p;
@@ -31,7 +32,7 @@ int pop() {
     if(p==NULL)
         return 1;
     top = top -> next;
-    printf("%s cleared from the history\n",p->title);
+    printf(" \"%s\" cleared from the history\n",p->title);
     free(p);
     return 0;
 }
@@ -46,7 +47,7 @@ void display() {
 }
 /****************** STACK OPERATIONS END ******************/
 
-void bst_for_sorting(int words) {
+NODE *bst_for_sorting(int words) {
     int flag;
     NODE *new, *current;
         flag = 1;
@@ -57,6 +58,7 @@ void bst_for_sorting(int words) {
         new -> data = words;
         if(root == NULL) {
             root = new;
+            //continue;
         }
         while(flag) {
             if(new -> data > current -> data) {
@@ -80,10 +82,11 @@ void bst_for_sorting(int words) {
 void inorder(NODE *ptr) {
     if(ptr -> left != NULL)
         inorder(ptr -> left);
-    printf("%d ", ptr -> data);     /*Should change this to push the data into QUEUE*/
+    printf("%d ", ptr -> data);     //Should change this to push the data into QUEUE
     if(ptr -> right != NULL)
         inorder(ptr -> right);
 }
+
 void count(FILE *fp){
     int words=1;
     char ch;
@@ -93,6 +96,7 @@ void count(FILE *fp){
     }
     bst_for_sorting(words);
 }
+
 
 // SEARCH OPERATIONS
 void searching(){
@@ -137,7 +141,7 @@ void searching(){
             f++;
     }
     inorder(root);
-    /* TO BE CONTINUED */
+    //To be continued
 }
 
 
