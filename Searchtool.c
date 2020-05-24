@@ -198,9 +198,9 @@ void searching(){
             count(fp2,title);
             strcpy(rel_path, "D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\");
         }
-        title[j++]=ch;
         else
             i=0;
+        title[j++]=ch;
         if(ch=='\n'){
             i=j=0;
         }
