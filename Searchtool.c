@@ -68,6 +68,13 @@ void insert(int n, char s[]){
         r = q;
     }
 }
+void delete(){
+    q = f;
+    f = f ->next;
+    free(q);
+    if(f==NULL)
+        r = NULL;
+}
 void q_display(){
     int i = 1, choice;
     char filename[50], temp[50], ch;
@@ -200,6 +207,8 @@ void searching(){
     }
     inorder(root);
     q_display();
+    while(f!=NULL || r!=NULL)
+        delete();
 }
 
 
