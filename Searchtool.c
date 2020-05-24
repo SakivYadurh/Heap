@@ -22,7 +22,6 @@ Hstr_List *p;
 void push(char s[]) {
     p = (Hstr_List *)malloc(sizeof(Hstr_List));
     strcpy(p -> title, s);
-    /* ERROR - LINE 17 : assignment to expression with array type. idk what and why atleast for now */
     p -> next = top;
     top = p;
 }
