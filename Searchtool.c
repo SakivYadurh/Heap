@@ -2,6 +2,14 @@
 #include<stdlib.h>
 #include<string.h>
 
+/***************** GLOBAL VARIABLE ------------ PATH TO THE ARCHIVE DIRECTORY *****************/
+
+char glo_path[100] = "D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\";
+
+/********* !! DO NOT FORGET TO CHANGE THE DIRECTORIES OR ADDRESSES ABOVE ACCORDINGLY **********/
+/* DIRECTORY MUST HAVE "titles.txt" CONTAINING TITLES OF THE DOCUMENTS FOR THE SEARCH TO WORK */
+
+
 // Structure of nodes which form a BST, whose inorder traversal gives a priority order
 typedef struct node {
     int data;
@@ -80,8 +88,8 @@ void delete(){
 void q_display(){
     int i = 1, choice;
     char filename[50], temp[50], ch;
-    /************ !!! DO NOT FORGET TO CHANGE THE DIRECTORIES OR ADDRESSES BELOW ACCORDINGLY ************/
-    char rel_path[100]="D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\";
+    char rel_path[100];
+    strcpy(rel_path, glo_path);
     FILE *fp;
     if(f==NULL || r==NULL){
         printf("Your search did not match any documents\n Suggestions:\n");
@@ -111,7 +119,7 @@ void q_display(){
         fp = fopen(strcat(rel_path, strcat(temp, ".txt")),"r");
         while((ch=getc(fp))!=EOF)
             printf("%c",ch);
-        strcpy(rel_path, "D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\");
+        strcpy(rel_path, glo_path);
     }
 }
 /****************** QUEUE OPERATIONS END ******************/
@@ -175,7 +183,7 @@ void count(FILE *fp, char s[]){
     int words=1;
     char ch;
     while((ch=getc(fp))!=EOF){
-        if(ch==' ' || ch=='\n')
+        if(ch==' ')
             words++;
     }
     bst_for_sorting(words, s);
@@ -184,8 +192,8 @@ void count(FILE *fp, char s[]){
 
 // SEARCH OPERATIONS
 void searching(){
-    /************ !!! DO NOT FORGET TO CHANGE THE DIRECTORIES OR ADDRESSES BELOW ACCORDINGLY ************/
-    char rel_path[100]="D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\"; 
+    char rel_path[100];
+    strcpy(rel_path, glo_path); 
     char search[50],title[50], temp[50],ch, ch1;
     int i=0,l,j=0;
     printf("Enter any keyword related to the document you are searching for.\nKeyword: ");
@@ -195,7 +203,8 @@ void searching(){
     printf("Search Keyword: \"%s\"\n\n\n",search);
     l=strlen(search);
     FILE *fp1,*fp2;
-    fp1=fopen("D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\titles.txt" ,"r");
+    fp1=fopen(strcat(rel_path, "titles.txt") ,"r");
+    strcpy(rel_path, glo_path);
     while((ch=getc(fp1))!=EOF){
         if(ch!='\n')
             title[j++]=ch;
@@ -212,7 +221,7 @@ void searching(){
             strcpy(temp, title);
             fp2=fopen(strcat(rel_path, strcat(temp, ".txt")),"r");
             count(fp2,title);
-            strcpy(rel_path, "D:\\Files\\Workspace - C\\SEM 2 - Course Project\\Archives\\");
+            strcpy(rel_path, glo_path);
         }
         else
             i=0;
@@ -273,12 +282,14 @@ void history() {
 // MAIN FUNCTION
 int main() {
     int choice;
+    char change_dir[100];
     //clrscr();
     do {
-        printf("MAIN MENU\n\n1. Search\n2. History\n\nAny other number to exit\n\nEnter your choice: ");
+        printf("MAIN MENU\n\n");
+        printf("1. Search\n2. History\n\nAny other number to exit\n\nEnter your choice: ");
         scanf("%d",&choice);
         system("cls"); // Console screen is CLEARED. i.e., Main screen instructions disappear and Search/History instructions appear
-        if(choice==1){
+        if(choice==1) {
             searching();
         }
         else if(choice==2) {
